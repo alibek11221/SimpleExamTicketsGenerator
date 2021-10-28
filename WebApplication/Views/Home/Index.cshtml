@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@Model  WebApplication.Dtos.To
+
+<div class="form-group">
+    <label for="group-name">Название группы</label>
+    <input class="form-control" id="group-name" type="text"/>
+</div>
+<div class="form-group">
+    <label for="discipline-name">Название дисциплины</label>
+    <input class="form-control" id="discipline-name" type="text"/>
+</div>
+<div class="form-group">
+    <label for="semester-name">Семестр</label>
+    <input class="form-control" id="semester-number" type="number"/>
+</div>
+<div class="form-group">
+    <label for="tickets-max">Кол-во билетов</label>
+    <input class="form-control" id="tickets-max" type="number"/>
+</div>
+<table class="table" id="quest-table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">возможные вопросы</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-number="1" class="questions">
+        <th scope="row">1</th>
+        <th><textarea style="width: 100%;"></textarea></th>
+    </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" id="add-question">Добавить вопрос</button>
+<button class="btn btn-secondary" id="generate">Сгенерировать</button>
+@section Scripts
+{
+    <script>
+        $('#generate').click(function () {
+            console.log(generateData())
+            fetch("@Url.Action("CreateDoc")",{
+                method:'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                 body: JSON.stringify(generateData()) // body data type must match "Content-Type" header
+            }).then(resp => resp.blob())
+                .then(blob => {
+                  const url = window.URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.style.display = 'none';
+                  a.href = url;
+                  // the filename you want
+                  a.download = 'Bilets.docx';
+                  document.body.appendChild(a);
+                  a.click();
+                  window.URL.revokeObjectURL(url);
+                  alert('your file has downloaded!'); // or you know, something with better UX...
+                })
+                .catch(() => alert('oh no!'));
+        })
+    </script>
+}
