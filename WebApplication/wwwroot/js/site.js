@@ -11,6 +11,13 @@ $('#add-question').click(function () {
     $('#quest-table > tbody').append(html)
 })
 
+$('#remove').click(function () {
+    if (questionsCounter !== 1) {
+        $(`[data-number="${questionsCounter}"]`).remove();
+        questionsCounter--;
+    }
+});
+
 function generateData() {
     const GroupName = $('#group-name').val();
     const DisciplineName = $('#discipline-name').val();

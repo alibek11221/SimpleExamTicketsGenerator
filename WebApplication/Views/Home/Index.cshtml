@@ -1,39 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@Model  WebApplication.Dtos.To
-
+<h1>Генератор билетов Алибека</h1>
 <div class="form-group">
     <label for="group-name">Название группы</label>
-    <input class="form-control" id="group-name" type="text"/>
+    <input class="form-control" id="group-name" type="text" />
 </div>
 <div class="form-group">
     <label for="discipline-name">Название дисциплины</label>
-    <input class="form-control" id="discipline-name" type="text"/>
+    <input class="form-control" id="discipline-name" type="text" />
 </div>
 <div class="form-group">
     <label for="semester-name">Семестр</label>
-    <input class="form-control" id="semester-number" type="number"/>
+    <input class="form-control" id="semester-number" type="number" />
 </div>
 <div class="form-group">
     <label for="tickets-max">Кол-во билетов</label>
-    <input class="form-control" id="tickets-max" type="number"/>
+    <input class="form-control" id="tickets-max" type="number" />
 </div>
 <table class="table" id="quest-table">
     <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">возможные вопросы</th>
-    </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">возможные вопросы</th>
+        </tr>
     </thead>
     <tbody>
-    <tr data-number="1" class="questions">
-        <th scope="row">1</th>
-        <th><textarea style="width: 100%;"></textarea></th>
-    </tr>
+        <tr data-number="1" class="questions">
+            <th scope="row">1</th>
+            <th><textarea style="width: 100%;"></textarea></th>
+        </tr>
     </tbody>
 </table>
 <button class="btn btn-primary" id="add-question">Добавить вопрос</button>
+<button class="btn btn-danger" id="remove">Убрать вопрос</button>
 <button class="btn btn-secondary" id="generate">Сгенерировать</button>
 @section Scripts
 {
